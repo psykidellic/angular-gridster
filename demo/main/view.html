@@ -17,11 +17,18 @@
     <div gridster="gridsterOpts">
         <ul>
             <li gridster-item="item" ng-repeat="item in standardItems">
-                <input type="text" integer ng-model="item.row" size="1" />,
-                <input type="text" integer ng-model="item.col" size="1" />
-                <br />
-                <input type="text" integer ng-model="item.sizeX" size="1" />x
-                <input type="text" integer ng-model="item.sizeY" size="1" />
+              <flip>
+                <flip-panel>
+                  <input type="text" integer ng-model="item.row" size="1" />,
+                  <input type="text" integer ng-model="item.col" size="1" />
+                  <br />
+                  <input type="text" integer ng-model="item.sizeX" size="1" />x
+                  <input type="text" integer ng-model="item.sizeY" size="1" />
+                </flip-panel>
+                <flip-panel>
+                  <div> B B B </div>
+                </flip-panel>
+              </flip>
             </li>
         </ul>
     </div>
