@@ -79,8 +79,8 @@ angular.module('app')
 
     link : function(scope,element,attrs, ctrl){
 
-      var width = attrs.flipWidth || "100px",
-        height =  attrs.flipHeight || "100px";
+      var width = attrs.flipWidth || "100%",
+        height =  attrs.flipHeight || "100%";
 
       element.addClass("flip");
 
