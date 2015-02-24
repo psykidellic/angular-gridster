@@ -1,3 +1,62 @@
+<style>
+
+	.panel {
+		width: 300px;
+		height: 300px;
+		margin: auto;
+		position: relative;
+	}
+
+	.card {
+		width: 100%;
+		height: 100%;
+		-o-transition: all .5s;
+		-ms-transition: all .5s;
+		-moz-transition: all .5s;
+		-webkit-transition: all .5s;
+		transition: all .5s;
+		-webkit-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		backface-visibility: hidden;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+
+	.front {
+		z-index: 2;
+		background-color: lightpink;
+	}
+
+	.back {
+		z-index: 1;
+		-webkit-transform: rotateX(-180deg);
+		-ms-transform: rotateX(-180deg);
+		-moz-transform: rotateX(-180deg);
+		transform: rotateX(-180deg);
+		background-color: lightblue;
+	}
+
+	.panel.flipped .front {
+		z-index: 1;
+		-webkit-transform: rotateX(180deg);
+		-ms-transform: rotateX(180deg);
+		-moz-transform: rotateX(180deg);
+		transform: rotateX(180deg);
+	}
+
+	.panel.flipped .back {
+		z-index: 2;
+		-webkit-transform: rotateX(0deg);
+		-ms-transform: rotateX(0deg);
+		-moz-transform: rotateX(0deg);
+		transform: rotateX(0deg);
+	}
+
+</style>
+
+
 <div class="demo-container">
     <h2>Standard Items</h2>
     <input type="button" ng-click="gridsterOpts.draggable.enabled = !gridsterOpts.draggable.enabled" value="{{gridsterOpts.draggable.enabled ? 'Disable' : 'Enable' }} Draggability" />
@@ -14,14 +73,21 @@
     <p>
         Each item provides its own dimensions and position using the standard fields: { row: row, col: col, sizeX: sizeX, sizeY: sizeY }.
     </p>
+
     <div gridster="gridsterOpts">
         <ul>
-            <li gridster-item="item" ng-repeat="item in standardItems">
-                <input type="text" integer ng-model="item.row" size="1" />,
-                <input type="text" integer ng-model="item.col" size="1" />
-                <br />
-                <input type="text" integer ng-model="item.sizeX" size="1" />x
-                <input type="text" integer ng-model="item.sizeY" size="1" />
+            <li gridster-item="item" ng-repeat="item in standardItems" class="panel" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped"
+				style="padding: 0;background-color: transparent;">
+				<div class="front card">
+					<input type="text" integer ng-model="item.row" size="1" />,
+					<input type="text" integer ng-model="item.col" size="1" />
+					<br />
+					<input type="text" integer ng-model="item.sizeX" size="1" />x
+					<input type="text" integer ng-model="item.sizeY" size="1" />
+				</div>
+				<div class="back card">
+					B B B
+				</div>
             </li>
         </ul>
     </div>
